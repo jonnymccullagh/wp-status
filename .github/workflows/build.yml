@@ -19,27 +19,27 @@ jobs:
       - name: Build Nagios Plugin
         working-directory: integrations/nagios/check_wp_status
         run: |
-          GOOS=linux   GOARCH=amd64 go build -o ../../../dist/check_wp_status-linux-amd64
+          GOOS=linux   GOARCH=amd64 go build -o ../../../dist/check_wp_status
           GOOS=darwin  GOARCH=amd64 go build -o ../../../dist/check_wp_status-darwin-amd64
           GOOS=windows GOARCH=amd64 go build -o ../../../dist/check_wp_status-windows-amd64.exe
 
       - name: Build Munin Plugin
         working-directory: integrations/munin/wp_status
         run: |
-          GOOS=linux   GOARCH=amd64 go build -o ../../../dist/wp_status-linux-amd64
+          GOOS=linux   GOARCH=amd64 go build -o ../../../dist/wp_status
           GOOS=darwin  GOARCH=amd64 go build -o ../../../dist/wp_status-darwin-amd64
           GOOS=windows GOARCH=amd64 go build -o ../../../dist/wp_status-windows-amd64.exe
-
-      - name: Debug
-        run: |
-          pwd
-          ls -al
-          ls -al dist
 
       - name: Upload release assets
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GH_TOKEN }}
-          file: dist/check_wp_status-linux-amd64
+          file: 
+            dist/check_wp_status
+            dist/check_wp_status-darwin-amd64
+            dist/check_wp_status-windows-amd64.exe
+            dist/wp_status
+            dist/wp_status-darwin-amd64
+            dist/wp_status-windows-amd64.exe
           asset_name: ${{ github.ref_name }}-asset-{{ runner.os }}-{{ runner.arch }}.tar.gz
           tag: ${{ github.ref_name }}
