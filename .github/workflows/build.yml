@@ -30,6 +30,12 @@ jobs:
           GOOS=darwin  GOARCH=amd64 go build -o dist/wp_status-darwin-amd64
           GOOS=windows GOARCH=amd64 go build -o dist/wp_status-windows-amd64.exe
 
+      - name: Debug
+        run: | 
+          pwd
+          ls -al
+          ls -al integrations/nagios/check_wp_status/dist
+
       - name: Upload release assets
         uses: svenstaro/upload-release-action@v2
         with:
