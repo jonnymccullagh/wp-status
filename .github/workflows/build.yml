@@ -19,7 +19,6 @@ jobs:
       - name: Build Nagios Plugin
         working-directory: integrations/nagios/check_wp_status
         run: |
-          cd integrations/nagios/check_wp_status
           GOOS=linux   GOARCH=amd64 go build -o dist/check_wp_status-linux-amd64
           GOOS=darwin  GOARCH=amd64 go build -o dist/check_wp_status-darwin-amd64
           GOOS=windows GOARCH=amd64 go build -o dist/check_wp_status-windows-amd64.exe
