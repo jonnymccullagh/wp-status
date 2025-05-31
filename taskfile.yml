@@ -1,0 +1,12 @@
+
+version: '3'
+
+tasks:
+  build:
+    dir: 'languages'
+    cmds:
+    - |
+      for file in *.po; do
+          msgfmt -o "${file%.po}.mo" "$file"
+      done
+

@@ -1,0 +1,43 @@
+# This workflow is used by the Release Engineering Team
+name: build
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.18'
+
+      - name: Build Nagios Plugin
+        working-directory: integrations/nagios/check_wp_status
+        run: |
+          cd integrations/nagios/check_wp_status
+          GOOS=linux   GOARCH=amd64 go build -o dist/check_wp_status-linux-amd64
+          GOOS=darwin  GOARCH=amd64 go build -o dist/check_wp_status-darwin-amd64
+          GOOS=windows GOARCH=amd64 go build -o dist/check_wp_status-windows-amd64.exe
+
+      - name: Build Munin Plugin
+        working-directory: integrations/munin/wp_status
+        run: |
+          GOOS=linux   GOARCH=amd64 go build -o dist/wp_status-linux-amd64
+          GOOS=darwin  GOARCH=amd64 go build -o dist/wp_status-darwin-amd64
+          GOOS=windows GOARCH=amd64 go build -o dist/wp_status-windows-amd64.exe
+
+      - name: Upload release assets
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: |
+            integrations/nagios/check_wp_status/dist/*
+            integrations/munin/wp_status/dist/*
+          asset_name: ${{ github.ref_name }}-asset-{{ runner.os }}-{{ runner.arch }}.tar.gz
+          tag: ${{ github.ref_name }}

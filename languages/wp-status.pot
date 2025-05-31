@@ -1,0 +1,25 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: wp-status.php:10
+msgid "WP Status authorization password saved successfully."
+msgstr ""
+
+#: wp-status.php:30
+msgid "API Password"
+msgstr ""
+
+#: wp-status.php:35
+msgid "Invalid API password."
+msgstr ""
+
+#: wp-status.php:40
+msgid "Authorization is required to access this endpoint."
+msgstr ""
+
+#: wp-status.php:50
+msgid "Database access is unavailable or critical errors detected."
+msgstr ""

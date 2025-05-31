@@ -1,0 +1,26 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "WP Status authorization password saved successfully."
+msgstr "La contraseña de autorización de WP Status se guardó correctamente."
+
+msgid "API Password"
+msgstr "Contraseña API"
+
+msgid "Invalid API password."
+msgstr "Contraseña API inválida."
+
+msgid "Authorization is required to access this endpoint."
+msgstr "Se requiere autorización para acceder a este punto final."
+
+msgid "Database access is unavailable or critical errors detected."
+msgstr "El acceso a la base de datos no está disponible o se detectaron errores críticos."
+
+msgid "Usage Example"
+msgstr "Ejemplo de Uso"
+
+msgid "Use the following curl command to access the status endpoint"
+msgstr "Utilice el siguiente comando curl para acceder al punto final de estado"
