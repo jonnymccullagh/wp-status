@@ -30,14 +30,19 @@ jobs:
           GOOS=darwin  GOARCH=amd64 go build -o ../../../dist/wp_status-darwin-amd64
           GOOS=windows GOARCH=amd64 go build -o ../../../dist/wp_status-windows-amd64.exe
 
-      - name: Upload release assets
-        uses: softprops/action-gh-release@v2
+      - name: Upload Munin PLugin release
+        uses: svenstaro/upload-release-action@v2
         with:
-          token: ${{ secrets.GH_TOKEN }}
-          files: |
-            ./dist/wp_status
-            ./dist/wp_status-darwin-amd64
-            ./dist/wp_status-windows-amd64.exe
-            ./dist/check_wp_status
-            ./dist/check_wp_status-darwin-amd64
-            ./dist/check_wp_status-windows-amd64.exe
+          repo_token: ${{ secrets.GH_TOKEN }}
+          file: "dist/wp_status"
+          asset_name: ${{ github.ref_name }}-asset-{{ runner.os }}-{{ runner.arch }}.tar.gz
+          tag: ${{ github.ref_name }}
+
+      - name: Upload Nagios Plugin release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GH_TOKEN }}
+          file: "dist/check_wp_status"
+          asset_name: ${{ github.ref_name }}-asset-{{ runner.os }}-{{ runner.arch }}.tar.gz
+          tag: ${{ github.ref_name }}
+
